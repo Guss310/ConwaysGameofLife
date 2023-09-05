@@ -1,31 +1,48 @@
-namespace Library
+using System.IO;
+using System.Text;
+using System.Threading;
+
+namespace Library;
+
+public class BoardPrinter
 {
-    bool[,] b //variable que representa el tablero
-    int width //variabe que representa el ancho del tablero
-    int height //variabe que representa altura del tablero
-    while (true)
+    public bool[,] board; //variable que representa el tablero
+    public int width; //variabe que representa el ancho del tablero
+    public int height; //variabe que representa altura del tablero
+
+    public BoardPrinter(bool[,] initialBoard, int boardWidth, int boardHeight)
     {
-        Console.Clear();
-        StringBuilder s = new StringBuilder();
-        for (int y = 0; y<height;y++)
+        board = initialBoard;
+        width = boardWidth;
+        height = boardHeight;
+    }
+
+    public void PrintBoard()
+    {
+        while (true)
         {
-            for (int x = 0; x<width; x++)
+            Console.Clear();
+            StringBuilder s = new StringBuilder();
+            for (int y = 0; y<height;y++)
             {
-                if(b[x,y])
+                for (int x = 0; x<width; x++)
                 {
-                    s.Append("|X|");
+                    if(board[x, y])
+                    {
+                        s.Append("|X|");
+                    }
+                    else
+                    {
+                        s.Append("___");
+                    }
                 }
-                else
-                {
-                    s.Append("___");
-                }
+                s.Append("\n");
             }
-            s.Append("\n");
-        }
-        Console.WriteLine(s.ToString());
+            Console.WriteLine(s.ToString());
         //=================================================
         //Invocar método para calcular siguiente generación
         //=================================================
         Thread.Sleep(300);
+        }
     }
 }
