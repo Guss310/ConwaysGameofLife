@@ -7,9 +7,9 @@ namespace Library;
     {
         public bool[,] gameBoard;
 
-            public Board(bool[,] initialBoard) // corregir para que venga del archivo
+            public Board(Archivo archivo)
             {
-                gameBoard = initialBoard;
+                gameBoard = archivo.board;
             }
         public void UpdateBoard()
         {
