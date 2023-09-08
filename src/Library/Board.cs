@@ -1,3 +1,4 @@
+using System.Configuration.Assemblies;
 using System.IO;
 using System.Text;
 
@@ -5,16 +6,19 @@ namespace Library;
 
     public class Board
     {
+        public int boardWidth;
+        public int boardHeight;
         public bool[,] gameBoard;
 
-            public Board(Archivo archivo)
-            {
-                gameBoard = archivo.board;
-            }
+        public Board(Archivo archivo)
+        {
+            gameBoard = archivo.board;
+        }
+        
         public void UpdateBoard()
         {
-            int boardWidth = gameBoard.GetLength(0);
-            int boardHeight = gameBoard.GetLength(1);
+            this.boardWidth = gameBoard.GetLength(0);
+            this.boardHeight = gameBoard.GetLength(1);
             bool[,] cloneboard = new bool[boardWidth, boardHeight];
 
             for (int x = 0; x < boardWidth; x++)

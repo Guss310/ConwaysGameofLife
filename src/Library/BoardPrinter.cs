@@ -6,43 +6,35 @@ namespace Library;
 
 public class BoardPrinter
 {
-    public bool[,] board; //variable que representa el tablero
-    public int width; //variabe que representa el ancho del tablero
-    public int height; //variabe que representa altura del tablero
+    private Board board;
 
-    public BoardPrinter(bool[,] initialBoard, int boardWidth, int boardHeight)
+    public BoardPrinter(Board board)
     {
-        board = initialBoard;
-        width = boardWidth;
-        height = boardHeight;
+        this.board = board;
     }
 
     public void PrintBoard()
     {
-        while (true)
+       
+    
+        Console.Clear();
+        StringBuilder s = new StringBuilder();
+        for (int y = 0; y < this.board.boardHeight;y++)
         {
-            Console.Clear();
-            StringBuilder s = new StringBuilder();
-            for (int y = 0; y<height;y++)
+            for (int x = 0; x < this.board.boardWidth; x++)
             {
-                for (int x = 0; x<width; x++)
+                if(this.board.gameBoard[x, y])
                 {
-                    if(board[x, y])
-                    {
-                        s.Append("|X|");
-                    }
-                    else
-                    {
-                        s.Append("___");
-                    }
+                    s.Append("|X|");
                 }
-                s.Append("\n");
+                else
+                {
+                    s.Append("___");
+                }
             }
-            Console.WriteLine(s.ToString());
-        //=================================================
-        //Invocar método para calcular siguiente generación
-        //=================================================
-        Thread.Sleep(300);
+            s.Append("\n");
         }
+        Console.WriteLine(s.ToString());
+    
     }
 }
